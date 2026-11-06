@@ -20,7 +20,7 @@ scope: 只要链接与介绍，不含任何本地项目路径 / 账号信息
 
 用法：
 1. 先读第 1 节的分类表，按用户要做的片型定位 1 个主仓 + 1 个参考仓，不要贪多。
-2. 需要细节读第 2 节（作者逐个读过 README 的 15 个仓）。
+2. 需要细节读第 2 节（作者逐个读过 README 的 16 个仓）。
 3. 需要更多候选读第 3 节的索引仓（133 条，含渲染栈与许可）。
 4. 安装前先读目标仓的 LICENSE 和 SKILL.md；装法见第 5 节。
 5. 输出任何成片前确认：素材可商用、AI 内容已标注、事实有出处。
@@ -34,7 +34,7 @@ scope: 只要链接与介绍，不含任何本地项目路径 / 账号信息
 | 你要做的事 | 主仓 | 备选 |
 |---|---|---|
 | 一条完整的代码出片产线（Remotion） | [weilanx-claude-videos](https://github.com/Azure12355/weilanx-claude-videos) | [gold-noir-video-creator](https://github.com/cpp285/gold-noir-video-creator) |
-| 选视觉风格 / 写风格提示词 | [code-animation-prompts](https://github.com/XiaoyeCodes/code-animation-prompts) | [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) |
+| 选视觉风格 / 写风格提示词 | [code-animation-prompts](https://github.com/XiaoyeCodes/code-animation-prompts) | [mg-styles-15](https://github.com/Vincentwei1021/mg-styles-15)（带源码）/ [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) |
 | 一句话 → 30 秒产品片 | [huashu-motion](https://github.com/alchaincyf/huashu-motion) | [huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion) |
 | 主题 → 1–3 分钟知识讲解 | [knowledge-video](https://github.com/Win-Hao/knowledge-video) | [qianrong-video-skill](https://github.com/yanghui960/qianrong-video-skill) |
 | 音乐 MV / 卡点片 | [PDoomVideo](https://github.com/JohnHeibel/PDoomVideo) | [motion-graphics-music-video-skill](https://github.com/makevoid/motion-graphics-music-video-skill) |
@@ -46,7 +46,7 @@ scope: 只要链接与介绍，不含任何本地项目路径 / 账号信息
 
 ---
 
-## 2. 逐个读过的 15 个（细节可信）
+## 2. 逐个读过的 16 个（细节可信）
 
 ### 2.1 产线与工程
 
@@ -60,8 +60,9 @@ scope: 只要链接与介绍，不含任何本地项目路径 / 账号信息
 
 | 仓库 | 是什么 | 规模 | 许可 | 装法 |
 |---|---|---|---|---|
-| **[code-animation-prompts](https://github.com/XiaoyeCodes/code-animation-prompts)** | 341 种代码动画风格提示词 + 196 张参考静帧 + 离线挑选器，封装成 skill；另带 HTML 逐帧导出 MP4 脚本 | 10 系列：A–G 26 / M 40 / K 38 / Z 15 / H 12 / L 59 / V 15 / X 31 / R 7 / O 98；其中 145 条只有文字参考 | 免费分享，**禁止包装成课程或付费 skill 出售**；Lemo / mg-styles-15 / code-video 三方 MIT | `python scripts/install_skill.py --target codex\|claude`（或手动复制整个 `skills/code-animation-prompts/`） |
+| **[code-animation-prompts](https://github.com/XiaoyeCodes/code-animation-prompts)** | 341 种代码动画风格提示词 + 196 张参考静帧 + 离线挑选器，封装成 skill；另带 HTML 逐帧导出 MP4 脚本 | 10 系列：A–G 26 / M 40 / K 38 / Z 15 / H 12 / L 59 / V 15 / X 31 / R 7 / O 98（**V 系列 15 条就是 mg-styles-15**）；其中 145 条只有文字参考 | 免费分享，**禁止包装成课程或付费 skill 出售**；Lemo / mg-styles-15 / code-video 三方 MIT | `python scripts/install_skill.py --target codex\|claude`（或手动复制整个 `skills/code-animation-prompts/`） |
 | **[lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)** | 电影风格图册：每个 `styles/<name>/STYLE.md` 写 11 节（材料、颜色逻辑、运动质感、相机语法、声音调色板…）+ 纯代码样片 | 59 个风格目录、11 类；默认 30–60 秒 / 24fps / −14 LUFS | 代码 MIT，样片 CC BY 4.0 | `/plugin marketplace add lemomo-ai/lemo-opuscar` |
+| **[mg-styles-15](https://github.com/Vincentwei1021/mg-styles-15)** | 15 种 MG 风格，每种一支 10 秒成片，**附风格说明 + 完整 prompt + 全部源码**（目前「提示词+源码」公开得最彻底的一个）。画面全代码：SVG / Canvas / WebGL / Three.js，3D 那支走 Blender；配乐由 `audio.py` 合成（103 个乐器采样）。每支是能画任意时刻的网页（`window.renderAt(t)`），headless Chrome 逐帧 + ffmpeg 合成；成片经两轮 AI 评审（`rubric.md`），得分 7.57–8.21 | 15 风格 / 10 秒 / 3.2k★；含 `harness/render.mjs`、`template.md`、`lib/audio` | MIT（三方素材 CC0/OFL 各自保留） | **不是 skill**：`git clone` 后 `npm install` + `pip install -r requirements.txt`，再 `node harness/render.mjs demos/<name>`；字体文件未随仓库分发，需按 `assets/fonts/README.md` 自备 |
 | **[awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos)** | 提示词数据集 + 对照重制画廊，可按技术栈标签筛选 | 703 条 prompt；canvas 267 / svg 183 / threejs 131 / shader 92 / gsap 86；418 条有 live remake | MIT（仅覆盖仓库文本/代码） | 直接查表，不需安装 |
 | **[opus-video-prompts](https://github.com/joeseesun/opus-video-prompts)** | 18 份完整提示词 + 54 个公开案例 + 9 条技术路线；含 Playwright 每帧 4 subframe + ffmpeg `tmix` 做运动模糊等工程经验 | 18 / 54 / 9 | 无 LICENSE，只能作方法参考 | 直接读 |
 
@@ -90,7 +91,6 @@ scope: 只要链接与介绍，不含任何本地项目路径 / 账号信息
 | 仓库 | 一句话 | 星 | 许可 |
 |---|---|---:|---|
 | [Vincentwei1021/video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) | Remotion 电影感产品片：152 张镜头配方卡 + 209 个动效预览 + 生产级模板 | 9.9k | Apache-2.0 |
-| [Vincentwei1021/mg-styles-15](https://github.com/Vincentwei1021/mg-styles-15) | 15 种 MG 风格，每支约 10 秒，附提示词与源码（非可安装 skill） | 818 | MIT |
 | [alchaincyf/huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion) | 美术史题材：35 种可动化艺术风格 + 9 种解说讲法 | 3.9k | MIT |
 | [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) | 影片风格图册，按风格名生成 | 2.3k | MIT |
 | [zenstory-ai/drama-skills](https://github.com/zenstory-ai/drama-skills) | 11 个 skill：AI 短剧全流程（剧本→分镜→提示词→成片） | 2.4k | MIT |
@@ -161,6 +161,7 @@ git clone https://github.com/<owner>/<repo>.git ~/.agents/skills/<skill-name>   
 3. 同一助手不要同时装用户级和项目级同名 skill，会出现重复入口。
 4. 装完在**新会话**里才可见；用一句最小请求验证，例如「用 X 风格做一个 5 秒测试片」。
 5. 有素材库的 skill（如 code-animation-prompts 约 75 MiB 视频）要整目录复制，只拷 `SKILL.md` 会丢库。
+6. **不是 skill 的仓**（如 mg-styles-15、PDoomVideo）不用装：clone 后用各自的 harness 渲染即可，见各仓 README。
 
 ---
 
